@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Deportation DH Project</title>
+
+  <!-- Fonts (optional): you can remove if you want system fonts only -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --ink:#111827;        /* dark gray for text */
+      --bg:#0b1220;         /* deep header overlay */
+      --brand:#2563eb;      /* accent (blue) */
+      --muted:#6b7280;      /* secondary text */
+      --paper:#f8fafc;      /* page background */
+      --max:1100px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--paper);scroll-behavior:smooth}
+
+    /* Top bar */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:saturate(180%) blur(10px);
+      background:rgba(255,255,255,.85);
+      border-bottom:1px solid #e5e7eb;
+    }
+    .nav{
+      max-width:var(--max); margin:auto; display:flex; align-items:center; justify-content:space-between;
+      padding:12px 20px;
+    }
+    .brand{font-weight:800; letter-spacing:.3px}
+    .links{display:flex; gap:18px}
+    .links a{
+      text-decoration:none; color:var(--ink); font-weight:600; padding:6px 10px; border-radius:8px;
+    }
+    .links a.active, .links a:hover{background:#eaf1ff;color:#1d4ed8}
+
+    /* Hero */
+    .hero{
+      position:relative; height:70vh; min-height:480px; display:grid; place-items:center; color:#fff;
+      background:linear-gradient(to bottom, rgba(7,14,26,.2), rgba(7,14,26,.7)),
+                 url("images/hero-map.jpg") center/cover no-repeat;
+    }
+    .hero .overlay{
+      text-align:center; max-width:900px; padding:0 20px;
+    }
+    .kicker{letter-spacing:1.5px; font-weight:700; opacity:.9}
+    .title{font-size:clamp(40px,7vw,92px); line-height:1; font-weight:800; margin:.2em 0}
+    .subtitle{font-size:clamp(18px,2.3vw,28px); font-weight:600; opacity:.95}
+    .chevron{
+      position:absolute; bottom:22px; left:50%; transform:translateX(-50%);
+      width:40px; height:40px; border-radius:50%; border:2px solid rgba(255,255,255,.8);
+      display:grid; place-items:center; transition:all .2s ease;
+    }
+    .chevron:hover{transform:translateX(-50%) translateY(2px)}
+    .chevron span{font-size:22px}
+
+    /* Sections */
+    section{padding:70px 20px}
+    .wrap{max-width:var(--max); margin:auto}
+    .section-title{font-size:28px; margin:0 0 10px; font-weight:800}
+    .section-kicker{color:var(--muted); font-weight:600; margin-bottom:18px}
+
+    .grid{
+      display:grid; gap:22px; grid-template-columns: repeat(12, 1fr);
+    }
+    .card{
+      grid-column: span 12;
+      background:#fff; border:1px solid #e5e7eb; border-radius:14px; padding:18px 18px;
+      box-shadow:0 6px 18px rgba(15,23,42,.06);
+    }
+    @media(min-width:900px){
+      .card.half{grid-column: span 6}
+      .card.third{grid-column: span 4}
+    }
+    .card h3{margin:0 0 8px; font-size:20px}
+    .muted{color:var(--muted)}
+
+    /* Footer */
+    footer{border-top:1px solid #e5e7eb; background:#fff}
+    .foot{max-width:var(--max); margin:auto; padding:30px 20px; font-size:14px; color:var(--muted)}
+  </style>
+</head>
+<body>
+
+  <!-- Sticky top navigation -->
+  <div class="topbar">
+    <nav class="nav" aria-label="Primary">
+      <div class="brand">UCLA DH 101 · Deportation</div>
+      <div class="links">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#critique">Data Critique</a>
+        <a href="#analysis">Analysis</a>
+        <a href="#sources">Sources</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <header id="home" class="hero" role="banner" aria-label="Project hero">
+    <div class="overlay">
+      <div class="kicker">UCLA DIGITAL HUMANITIES 101</div>
+      <h1 class="title">REGIONAL REALITIES</h1>
+      <p class="subtitle">Deportation data, narratives, and the limits of quantification</p>
+    </div>
+    <a href="#about" class="chevron" aria-label="Scroll to About"><span>⌄</span></a>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about" aria-labelledby="about-title">
+    <div class="wrap">
+      <p class="section-kicker">Overview</p>
+      <h2 id="about-title" class="section-title">About Me & Project</h2>
+      <div class="grid">
+        <article class="card half">
+          <h3>About Me</h3>
+          <p>Hello! I’m <strong>[Your Name]</strong>, studying Digital Humanities at UCLA. I’m investigating how deportation is counted, categorized, and visualized—and what stories those choices tell or silence.</p>
+          <p class="muted">Email • Portfolio • GitHub (optional links)</p>
+        </article>
+        <article class="card half">
+          <h3>Project Goals</h3>
+          <ul>
+            <li>Contextualize deportation metrics with historical & ethical framing.</li>
+            <li>Surface omissions/biases in data collection and visualization.</li>
+            <li>Propose humane, transparent design patterns for public audiences.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- DATA CRITIQUE -->
+  <section id="critique" aria-labelledby="critique-title">
+    <div class="wrap">
+      <p class="section-kicker">Method & Ethics</p>
+      <h2 id="critique-title" class="section-title">Data Critique</h2>
+      <div class="grid">
+        <article class="card third">
+          <h3>Sources & Coverage</h3>
+          <p>Which agencies/archives? What years? Who is omitted (voluntary returns, interior vs. border removals, double counting)?</p>
+        </article>
+        <article class="card third">
+          <h3>Definitions</h3>
+          <p>How are “deportation,” “removal,” and “return” defined? Small definitional shifts can change the narrative drastically.</p>
+        </article>
+        <article class="card third">
+          <h3>Visualization Choices</h3>
+          <p>Scale, color, and aggregation affect interpretation. We document design decisions and their trade-offs.</p>
+        </article>
+        <article class="card">
+          <h3>Reflections</h3>
+          <p>Data are not neutral. We pair charts with narrative context, acknowledge uncertainty, and avoid dehumanizing language.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANALYSIS / FINDINGS -->
+  <section id="analysis" aria-labelledby="analysis-title">
+    <div class="wrap">
+      <p class="section-kicker">Our Findings</p>
+      <h2 id="analysis-title" class="section-title">Analysis & Visuals</h2>
+      <div class="grid">
+        <article class="card half">
+          <h3>Key Trend 1</h3>
+          <p class="muted">Short description of a core pattern with a takeaway sentence. (You can embed images or iframes here.)</p>
+          <!-- <img src="images/chart1.png" alt="Trend chart"> -->
+        </article>
+        <article class="card half">
+          <h3>Key Trend 2</h3>
+          <p class="muted">Another finding with a clearly stated limitation or uncertainty note.</p>
+        </article>
+        <article class="card">
+          <h3>Interpretation</h3>
+          <p>Connect patterns to policy changes, regional contexts, or archival gaps. Note where data contradict lived experience and why.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOURCES -->
+  <section id="sources" aria-labelledby="sources-title">
+    <div class="wrap">
+      <p class="section-kicker">Citations</p>
+      <h2 id="sources-title" class="section-title">Sources & Credits</h2>
+      <div class="card">
+        <ul>
+          <li><em>Primary datasets:</em> [Agency/Data portal, years, link].</li>
+          <li><em>Readings:</em> Presner & Shepard (2016); Turnbull, <em>Maps are Territories</em>; others.</li>
+          <li><em>Design/Code:</em> Built with vanilla HTML/CSS; hosted on GitHub Pages.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot">
+      © 2025 [Your Name] · UCLA Digital Humanities 101 · Group 5
+    </div>
+  </footer>
+
+  <script>
+    // highlight active link on scroll
+    const sections = [...document.querySelectorAll("section, header.hero")];
+    const links = [...document.querySelectorAll(".links a")];
+
+    const spy = () => {
+      const pos = window.scrollY + 120;
+      let current = "#home";
+      sections.forEach(s=>{
+        if (pos >= s.offsetTop) current = "#" + (s.id || "home");
+      });
+      links.forEach(a=>a.classList.toggle("active", a.getAttribute("href")===current));
+    };
+    window.addEventListener("scroll", spy);
+    window.addEventListener("load", spy);
+  </script>
+</body>
+</html>
