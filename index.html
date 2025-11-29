@@ -469,11 +469,12 @@
 
   const bibHeads=[...document.querySelectorAll(".bib-head")];
   bibHeads.forEach(head=>{
-    head.addEventListener("click",()=>{
+    head.querySelector(".peek").addEventListener("click",(e)=>{
+      e.stopPropagation();
       const card=head.parentElement;
-      const icon=head.querySelector(".toggle");
+      const label=head.querySelector(".label");
       card.classList.toggle("expanded");
-      icon.textContent=card.classList.contains("expanded")?"-":"+";
+      label.textContent=card.classList.contains("expanded")?"Hide":"Notes";
     });
   });
 </script>
