@@ -63,6 +63,17 @@
     .person-role{margin:2px 0 0; font-weight:700; color:var(--brand)}
     .person-bio{margin:.5rem 0 0; color:#e5e7eb; line-height:1.5}
 
+    .bib-grid{display:flex; flex-direction:column; gap:14px;}
+    .bib-card{background:var(--panel); border:1px solid var(--line); border-radius:14px; overflow:hidden; box-shadow:0 12px 32px rgba(0,0,0,.25);}
+    .bib-head{padding:14px 16px; display:flex; align-items:flex-start; gap:12px; cursor:pointer; background:rgba(255,255,255,.02);}
+    .bib-head:hover{background:rgba(185,28,28,.08);}
+    .cite-text{color:#e5e7eb; font-weight:700; line-height:1.5; flex:1;}
+    .toggle{color:var(--muted); font-weight:800; font-size:18px; line-height:1;}
+    .bib-body{display:none; padding:0 16px 18px 16px; color:#e5e7eb;}
+    .bib-card.expanded .bib-body{display:block;}
+    .bib-card.expanded .toggle{color:var(--brand);}
+    .bib-anno{margin:8px 0 0; line-height:1.6;}
+
     .mla {list-style:none; padding-left:0; margin:0;}
     .mla li{margin:0 0 18px 0;}
     .cite{display:block; padding-left:1.8em; text-indent:-1.8em; line-height:1.45;}
@@ -226,29 +237,29 @@
       </article>
 
       <article class="card">
-        <h3>What Information Is Included & What This Dataset Can Illuminate — Dylan</h3>
+        <h3>What Information Is Included & What This Dataset Can Illuminate</h3>
         <p>Although this data reveals much valuable information regarding all forty thousand plus deportations in America from 1893–1921, it does not reveal the personal stories of the people listed, as well as the contexts that they were deported under. Political pressure, racial problems, or economic hardship could all be reasons why these decisions were made. It also lacks contextual information regarding what the United States' deportation policy was like at the time, as well as what leaders were in power that may have influenced an influx of deportations. It also does not represent the human aspect at all, and what effect these displacements have had on the families and their lives. This is the main problem with quantitative data, as it lacks context that explains the deeper political, social, and racial implications of what affected these numbers.</p>
       </article>
 
       <article class="card">
-        <h3>How the Data Was Generated & Origins & Funding — Kenny</h3>
+        <h3>How the Data Was Generated & Origins & Funding</h3>
         <p>The data is generated onto a sheet. Most of the data centers on the port of deportation, the grounds for deportation, and the destination of deportation. Some columns will also depict exact longitude and latitudes for where the deportation took place. The source itself was found through the Harvard Dataverse Website. However, the author of the dataset is Torrie Hester, a history professor at Saint Louis University. She seems to be very involved with educating about deportation, and this dataset was made for “Deportations from the United States: A Visual History” (DVH) (2020-11-10). This data was published on November 23rd, 2021; however, it was added to the repository on November 10th, 2020. There is no public confirmation on who funded this data.</p>
       </article>
 
       <article class="card">
-        <h3>What Information Is Left Out — Yuexi</h3>
+        <h3>What Information Is Left Out</h3>
         <p>A lot of information is left out about this dataset. Firstly, this dataset is sourced from the Harvard Dataverse website, which is accessible on Canvas. Although the website has the metadata section, this only describes the general contexts of the dataset. It does not explain the meaning of the categories and values of the dataset.</p>
         <p>Secondly, this dataset contains numerous blank spaces, mostly in the DeportedFromLat, DeportedFromLong, DeportedTo, DeportedToName, and DeportedToiso_alpha categories. These data provide information on the port of deportation and the destination of deportation, which is important for understanding deportation routes and patterns. Some data in NatandracName and Natandraciso_alpha are also missing, but compared to the amount of missing data in the DeportedFrom… categories, it's just a small amount.</p>
         <p>Thirdly, the dataset does not provide any personal information about the deported people. For example, there is no information on their family backgrounds, education levels, or economic status etc. These individual circumstances are essential clues for the reason for deportation and the deportation patterns. Lastly, the reason for this missing data is not explicit.</p>
       </article>
 
       <article class="card">
-        <h3>What the Dataset Cannot Reveal — Rohan</h3>
+        <h3>What the Dataset Cannot Reveal</h3>
         <p>This dataset has a few things that cannot be found from the pure numbers. We are able to see limited information lacking sufficient context. We are unable to see beyond the basic and learn more about the individual and their personal experience—issues like why they were deported. The data also does not provide information on what entity or enforcement assisted or initiated the deportation, for example ICE or any other agency. We are also unaware of a great deal of information such as how many deportations weren’t present or misclassified. The data also lacks descriptions on the laws and regulations at the time.</p>
       </article>
 
       <article class="card">
-        <h3>Ideological Effects — Yitian</h3>
+        <h3>Ideological Effects</h3>
         <p>The dataset shows certain ideological effects in how deportation data was recorded and presented. It treats people mainly as numbers and cases instead of individuals with personal stories. This reflects how the U.S. government at that time viewed deportation—as an administrative or legal issue rather than a human one. The way the data is organized also suggests a belief that the process was neutral and objective, but in reality, it was influenced by politics, racism, and economic interests.</p>
         <p>Another ideological effect comes from who created the data. Since it was collected by government officials, it only shows one side—the state’s perspective—and not the voices of the people who were deported. This imbalance shows how data can reflect the power structure of its time. In short, the dataset not only documents deportations but also carries the ideas and values of authority and control that shaped U.S. immigration policy back then.</p>
       </article>
@@ -261,9 +272,186 @@
   <div class="wrap">
     <p class="section-kicker">Citations</p>
     <h2 class="section-title">Sources & Credits</h2>
-    <div class="card">
-      <h3 style="margin-top:0;">Annotated Bibliography</h3>
-      <!-- Paste your complete annotated bibliography list here (unchanged from previous version) -->
+    <div class="bib-grid">
+      <article class="bib-card">
+        <header class="bib-head">
+          <span class="cite-text">Abbott, Grace. “Immigration and Crime (Report of Committee ‘G’ of the Institute).” Journal of the American Institute of Criminal Law and Criminology, vol. 6, no. 4, 1915, pp. 522–32, https://doi.org/10.2307/1132732.</span>
+          <span class="toggle">+</span>
+        </header>
+        <div class="bib-body">
+          <p class="bib-anno">Talks about three main ways in which immigration and crime rates are related and goes into detail on policies that can hurt or defend immigrants. The first of these ways is that the crime rate significantly increases when immigration rates also increase. In order to solve this, one must either limit immigration or start deportations. The second way is that sometimes those foreigners have different cultures and understandings, which could mean that their temptations are different. Therefore, there must be crime prevention programs to remedy this. And the last one is that it is necessary to have a program in place to ensure foreign-born people have the same access as domestic-born people in terms of getting justice.</p>
+        </div>
+      </article>
+
+      <article class="bib-card">
+        <header class="bib-head">
+          <span class="cite-text">Borrell, Luisa N., and Farzana Kapadia. “The Escalating War on Immigrants Is a Public Health Crisis.” American Journal of Public Health, vol. 115, no. 8, 2025, pp. 1220–1221. https://www.proquest.com/scholarly-journals/escalating-war-on-immigrants-is-public-health/docview/3232513760/se-2.</span>
+          <span class="toggle">+</span>
+        </header>
+        <div class="bib-body">
+          <p class="bib-anno">The authors question the claim that anti-immigration policies can protect public health. They believe these policies will force people to hide underground, which will harm public health. Moreover, Western policymakers will blame all the medical pressure on immigration, so the government will deliberately abandon those undocumented populations. Then, the authors use research on public health and immigration mental health to prove that “the U.S. public health system’s failure to protect immigrants is a failure of its own mission.”</p>
+        </div>
+      </article>
+
+      <article class="bib-card">
+        <header class="bib-head">
+          <span class="cite-text">Deportation of Interned Aliens. Congressional Hearing, 1919-01-16. 1919, https://congressional.proquest.com/congressional/docview/t29.d30.hrg-1919-imn-0006?accountid=14512.</span>
+          <span class="toggle">+</span>
+        </header>
+        <div class="bib-body">
+          <p class="bib-anno">This congressional hearing in 1919 covers H.R. 13965, a bill proposed by the Department of Justice to deport “undesired aliens,” targeting those interned during World War I and those convicted of crimes against U.S. law during the war. The House committee raised concerns over broad language that allowed deportation for “any offense.” This report helps connect policies of 1919 to the dataset’s odd reasons for deportation, highlighting parallels between policy and recorded cases.</p>
+        </div>
+      </article>
+
+      <article class="bib-card">
+        <header class="bib-head">
+          <span class="cite-text">Golash-Boza, Tanya Maria. Deported: Immigrant Policing, Disposable Labor, and Global Capitalism. New York University Press, 2015. https://nyupress.org/9781479831183/deported.</span>
+          <span class="toggle">+</span>
+        </header>
+        <div class="bib-body">
+          <p class="bib-anno">Links mass deportation to global capitalism and labor control, showing how enforcement targets racialized workers to maintain economic inequality. Adds an economic and sociological view on deportation systems, aligning with the project’s focus on social impacts.</p>
+        </div>
+      </article>
+
+      <article class="bib-card">
+        <header class="bib-head">
+          <span class="cite-text">Gulasekaram, Pratheepan. “The Second Amendment’s ‘People’ Problem.” Vanderbilt Law Review, vol. 76, no. 5, 2023, pp. 1437–1520. https://search.library.ucla.edu/permalink/01UCS_LAL/192ecse/cdi_proquest_journals_2875130842.</span>
+          <span class="toggle">+</span>
+        </header>
+        <div class="bib-body">
+          <p class="bib-anno">Examines the historical and legal status of non-citizens and their constitutional rights, arguing courts and Congress created a distinction between citizen rights and non-citizen privileges, leaving non-citizens vulnerable to mass deportation. Useful for explaining why deportations were disruptive and how limited protections affected communities.</p>
+        </div>
+      </article>
+
+      <article class="bib-card">
+        <header class="bib-head">
+          <span class="cite-text">Hernandez, Kelly Lytle. Migra! A History of the U.S. Border Patrol. University of California Press, 2010. https://www.ucpress.edu/book/9780520266414/migra.</span>
+          <span class="toggle">+</span>
+        </header>
+        <div class="bib-body">
+          <p class="bib-anno">Traces the U.S. Border Patrol’s origins and shows how race and politics influenced enforcement, arguing deportation practices were rooted in racial discrimination. Provides historical context on deportation policy and enforcement culture, especially along the U.S.–Mexico border.</p>
+        </div>
+      </article>
+
+      <article class="bib-card">
+        <header class="bib-head">
+          <span class="cite-text">Hernandez, Jose Angel. “Contemporary Deportation Raids and Historical Memory: Mexican Expulsions in the Nineteenth Century.” Aztlán, vol. 35, no. 2, 2010, pp. 115–42. https://search.library.ucla.edu/permalink/01UCS_LAL/192ecse/cdi_ingenta_journals_ic_csrc_00052604_v35n2_20211006_1656_default_tar_gz_s6.</span>
+          <span class="toggle">+</span>
+        </header>
+        <div class="bib-body">
+          <p class="bib-anno">Connects nineteenth-century anti-Mexican expulsions to later deportation practices, arguing repeated expulsions created a “historical memory” of vulnerability for Mexican American communities. Shows how early regional expulsions shaped distrust and collective identity, informing impacts around 1892–1921.</p>
+        </div>
+      </article>
+
+      <article class="bib-card">
+        <header class="bib-head">
+          <span class="cite-text">Kellor, Frances A. “Needed—A Domestic Immigration Policy.” The North American Review, vol. 193, no. 4, 1911, p. 561. https://www.proquest.com/magazines/needed-domestic-immigration-policy/docview/1296780319/se-2.</span>
+          <span class="toggle">+</span>
+        </header>
+        <div class="bib-body">
+          <p class="bib-anno">Argues for reforming U.S. immigration policy to mitigate harms of existing legislation. Proposes distribution, protection, and education to help immigrants assimilate and critiques allowing immigrants in only to later deport them. Useful for examining how lack of resources and deportations disrupted families and communities.</p>
+        </div>
+      </article>
+
+      <article class="bib-card">
+        <header class="bib-head">
+          <span class="cite-text">King, Ryan D., and Denise N. Obinna. “Violent Crime and Immigrant Removals: Reasons and Determinants of Immigrant Deportations, 1908–1986.” Migration Letters, vol. 15, no. 2, 2018, pp. 239–254. https://search.library.ucla.edu/permalink/01UCS_LAL/192ecse/cdi_proquest_journals_2148530111.</span>
+          <span class="toggle">+</span>
+        </header>
+        <div class="bib-body">
+          <p class="bib-anno">Analyzes deportations 1908–1986 using immigration yearbooks, showing shifts from criminal grounds to paperwork issues and linking spikes in violent crime rates to increases in deportations. Helps contextualize numerical data with enforcement drivers, though light on media and political framing.</p>
+        </div>
+      </article>
+
+      <article class="bib-card">
+        <header class="bib-head">
+          <span class="cite-text">Lauck, W. Jett. “The Significance of Recent Immigration.” The North American Review, vol. 195, no. 2, 1912, p. 201. https://search.library.ucla.edu/permalink/01UCS_LAL/192ecse/cdi_proquest_miscellaneous_1296792778.</span>
+          <span class="toggle">+</span>
+        </header>
+        <div class="bib-body">
+          <p class="bib-anno">Discusses impacts of recent immigration on U.S.-born citizens and earlier immigrants, arguing many arrivals were driven by transportation companies for short-term labor, depressing wages and working conditions. Advocates literacy tests and head taxes to curb unskilled labor. Provides background on economic arguments driving restrictive policies and deportations.</p>
+        </div>
+      </article>
+
+      <article class="bib-card">
+        <header class="bib-head">
+          <span class="cite-text">Massey, Douglas S., and Karen A. Pren. “Unintended Consequences of U.S. Immigration Policy: Explaining the Post-1965 Surge from Latin America.” Population and Development Review, vol. 38, no. 1, 2012, pp. 1–29. https://doi.org/10.1111/j.1728-4457.2012.00470.x.</span>
+          <span class="toggle">+</span>
+        </header>
+        <div class="bib-body">
+          <p class="bib-anno">Explains how post-1965 restrictive policies unintentionally increased long-term Latin American migration, as enforcement discouraged return trips. Supports analysis of how policy shapes migration trends; data is credible but less current for recent effects.</p>
+        </div>
+      </article>
+
+      <article class="bib-card">
+        <header class="bib-head">
+          <span class="cite-text">Nash, Lindsay. “Inventing Deportation Arrests.” Michigan Law Review, vol. 121, no. 8, 2023, pp. 1301–63. https://doi.org/10.36644/mlr.121.8.inventing.</span>
+          <span class="toggle">+</span>
+        </header>
+        <div class="bib-body">
+          <p class="bib-anno">Tracks how deportation arrests emerged as a distinct legal tool targeting non-citizens based on status, giving immigration agents broad powers. Shows the parallel enforcement system that left immigrants vulnerable between 1892 and 1921, clarifying legal risks to communities.</p>
+        </div>
+      </article>
+
+      <article class="bib-card">
+        <header class="bib-head">
+          <span class="cite-text">Nuño, Lidia E., et al. “First, Do No Harm: Why Anti-Immigrant Policies in the United States Are a Public Health Concern.” Journal of Public Health Policy, vol. 43, no. 3, 2022, pp. 403–412. https://www.proquest.com/scholarly-journals/first-do-no-harm-why-anti-immigrant-policies/docview/2727899799/se-2.</span>
+          <span class="toggle">+</span>
+        </header>
+        <div class="bib-body">
+          <p class="bib-anno">Links anti-immigrant policies to mental health harms and identity stress in immigrant families, arguing these are public health issues. Recommends measuring policy impacts on health, investing in care in anti-immigrant regions, and supporting services for undocumented populations.</p>
+        </div>
+      </article>
+
+      <article class="bib-card">
+        <header class="bib-head">
+          <span class="cite-text">Peirce, Paul S. “The Control of Immigration as an Administrative Problem.” The American Political Science Review, vol. 4, no. 3, 1910, pp. 374–89. https://doi.org/10.2307/1945870.</span>
+          <span class="toggle">+</span>
+        </header>
+        <div class="bib-body">
+          <p class="bib-anno">Reviews immigration policy changes since 1882, grouping them as restrictive, protective, distributive, and administrative (effectively restrictive and selective). Highlights focus on controlling the quality of immigrants rather than quantity.</p>
+        </div>
+      </article>
+
+      <article class="bib-card">
+        <header class="bib-head">
+          <span class="cite-text">Seller, Maxine S. “Historical Perspectives on American Immigration Policy: Case Studies and Current Implications.” Law and Contemporary Problems, vol. 45, no. 2, 1982, pp. 137–162. https://doi.org/10.2307/1191406.</span>
+          <span class="toggle">+</span>
+        </header>
+        <div class="bib-body">
+          <p class="bib-anno">Synthesizes immigration policy debates from the 18th to early 20th centuries, arguing recurring concerns about jobs, culture, and loyalty reflect national fears more than immigrant actions. Offers historical framing for enforcement trends like those in the DHS data; limited on post-1965 analysis.</p>
+        </div>
+      </article>
+
+      <article class="bib-card">
+        <header class="bib-head">
+          <span class="cite-text">Shulman, Max, and J. Chris Westgate, eds. Performing the Progressive Era: Immigration, Urban Life, and Nationalism on Stage. University of Iowa Press, 2019. https://muse.jhu.edu/book/65921.</span>
+          <span class="toggle">+</span>
+        </header>
+        <div class="bib-body">
+          <p class="bib-anno">Explores how immigration and immigrants shaped performance, minority representation, and social change on stage during the Progressive Era. Useful for understanding cultural conflicts and responses that underpinned deportation policies.</p>
+        </div>
+      </article>
+
+      <article class="bib-card">
+        <header class="bib-head">
+          <span class="cite-text">U.S. Department of Homeland Security, Office of Homeland Security Statistics. “Table 39. Aliens Removed or Returned: Fiscal Years 1892 to 2017.” Yearbook of Immigration Statistics, 2017. https://www.dhs.gov/immigration-statistics/yearbook/2017/table39.</span>
+          <span class="toggle">+</span>
+        </header>
+        <div class="bib-body">
+          <p class="bib-anno">Provides counts of removals and returns from 1892–2017, showing shifts from voluntary returns to formal removals and evolving enforcement severity. Reliable long-term data but lacks demographic details and year-to-year explanations.</p>
+        </div>
+      </article>
+
+      <article class="bib-card">
+        <header class="bib-head">
+          <span class="cite-text">Ward, Robert DeC. “The New Immigration Act.” The North American Review, vol. 185, no. 619, 1907, pp. 587–93. https://www.jstor.org/stable/25105935.</span>
+          <span class="toggle">+</span>
+        </header>
+        <div class="bib-body">
+          <p class="bib-anno">Breaks down the 1907 Immigration Act, including increased head taxes, equal treatment for those deemed “imbecile,” and added physical tests for “aliens.” Outlines the act’s sections, illustrating how statutory changes shaped who could stay or be deported.</p>
+        </div>
+      </article>
     </div>
   </div>
 </section>
@@ -277,6 +465,16 @@
   const links=[...document.querySelectorAll(".links a")];
   const spy=()=>{const y=window.scrollY+120;let cur="#home";sections.forEach(s=>{if(y>=s.offsetTop)cur="#"+(s.id||"home")});links.forEach(a=>a.classList.toggle("active",a.getAttribute("href")===cur))};
   window.addEventListener("scroll",spy);window.addEventListener("load",spy);
+
+  const bibHeads=[...document.querySelectorAll(".bib-head")];
+  bibHeads.forEach(head=>{
+    head.addEventListener("click",()=>{
+      const card=head.parentElement;
+      const icon=head.querySelector(".toggle");
+      card.classList.toggle("expanded");
+      icon.textContent=card.classList.contains("expanded")?"-":"+";
+    });
+  });
 </script>
 </body>
 </html>
