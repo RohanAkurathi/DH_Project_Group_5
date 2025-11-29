@@ -6,60 +6,69 @@
   <title>DH Project Group 5 | Deportation Data Analysis</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:wght@600;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --ink:#111827; --bg:#0b1220; --brand:#2563eb; --muted:#6b7280; --paper:#f8fafc; --max:1100px;
+      --ink:#e5e7eb; --bg:#05070d; --panel:#0d111a; --brand:#b91c1c; --muted:#9ca3af; --line:#1f2937; --max:1100px;
     }
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--paper);scroll-behavior:smooth}
+    html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);scroll-behavior:smooth;line-height:1.6;}
 
-    .topbar{position:sticky; top:0; z-index:50; backdrop-filter:saturate(180%) blur(10px); background:rgba(255,255,255,.85); border-bottom:1px solid #e5e7eb;}
-    .nav{max-width:var(--max); margin:auto; display:flex; align-items:center; justify-content:space-between; padding:12px 20px;}
-    .brand{font-weight:800; letter-spacing:.3px}
+    .topbar{position:sticky; top:0; z-index:50; backdrop-filter:saturate(180%) blur(12px); background:rgba(5,7,13,.82); border-bottom:1px solid var(--line);}
+    .nav{max-width:var(--max); margin:auto; display:flex; align-items:center; justify-content:space-between; padding:12px 20px; letter-spacing:.2px;}
+    .brand{font-weight:800; letter-spacing:.3px; text-transform:uppercase;}
     .links{display:flex; gap:18px}
-    .links a{text-decoration:none; color:var(--ink); font-weight:600; padding:6px 10px; border-radius:8px;}
-    .links a.active, .links a:hover{background:#eaf1ff;color:#1d4ed8}
+    .links a{text-decoration:none; color:var(--muted); font-weight:700; padding:8px 12px; border-radius:10px; transition:all .2s ease;}
+    .links a.active, .links a:hover{background:rgba(185,28,28,.15);color:#fef2f2; box-shadow:0 8px 24px rgba(0,0,0,.25);}
 
-    .hero{position:relative; height:70vh; min-height:480px; display:grid; place-items:center; color:#fff;
-      background:linear-gradient(to bottom, rgba(7,14,26,.2), rgba(7,14,26,.7)), url("images/hero-map.jpg") center/cover no-repeat;}
-    .hero .overlay{text-align:center; max-width:900px; padding:0 20px;}
-    .kicker{letter-spacing:1.5px; font-weight:700; opacity:.9}
-    .title{font-size:clamp(40px,7vw,92px); line-height:1; font-weight:800; margin:.2em 0}
-    .subtitle{font-size:clamp(18px,2.3vw,28px); font-weight:600; opacity:.95}
-    .chevron{position:absolute; bottom:22px; left:50%; transform:translateX(-50%); width:40px; height:40px; border-radius:50%;
-      border:2px solid rgba(255,255,255,.8); display:grid; place-items:center; transition:all .2s ease;}
+    .hero{position:relative; height:72vh; min-height:480px; display:grid; place-items:center; color:#fff;
+      background:linear-gradient(140deg, rgba(5,7,13,.55), rgba(5,7,13,.85)), url("images/deportation.jpg") center/cover no-repeat;}
+    .hero::after{content:""; position:absolute; inset:0; background:radial-gradient(circle at 20% 20%, rgba(185,28,28,.2), transparent 35%), radial-gradient(circle at 80% 70%, rgba(255,255,255,.08), transparent 30%);}
+    .hero .overlay{position:relative; text-align:center; max-width:900px; padding:0 20px;}
+    .kicker{letter-spacing:2px; font-weight:800; opacity:.9; color:#fcd34d;}
+    .title{font-family:"Playfair Display", "Times New Roman", serif; font-size:clamp(42px,7vw,94px); line-height:1; font-weight:800; margin:.2em 0; text-shadow:0 10px 30px rgba(0,0,0,.45);}
+    .subtitle{font-size:clamp(18px,2.3vw,28px); font-weight:600; opacity:.95; color:#e5e7eb;}
+    .chevron{position:absolute; bottom:22px; left:50%; transform:translateX(-50%); width:44px; height:44px; border-radius:50%;
+      border:2px solid rgba(255,255,255,.8); display:grid; place-items:center; transition:all .2s ease; background:rgba(5,7,13,.45);}
     .chevron:hover{transform:translateX(-50%) translateY(2px)}
     .chevron span{font-size:22px}
 
-    section{padding:70px 20px}
+    section{padding:80px 20px; position:relative;}
     .wrap{max-width:var(--max); margin:auto}
-    .section-title{font-size:28px; margin:0 0 10px; font-weight:800}
-    .section-kicker{color:var(--muted); font-weight:600; margin-bottom:18px}
+    .section-title{font-size:30px; margin:0 0 10px; font-weight:800; letter-spacing:.4px;}
+    .section-kicker{color:var(--brand); font-weight:700; margin-bottom:18px; letter-spacing:1px; text-transform:uppercase}
 
     .grid{display:grid; gap:22px; grid-template-columns: repeat(12, 1fr);}
-    .card{grid-column: span 12; background:#fff; border:1px solid #e5e7eb; border-radius:14px; padding:18px;
-      box-shadow:0 6px 18px rgba(15,23,42,.06);}
+    .card{grid-column: span 12; background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:22px;
+      box-shadow:0 12px 32px rgba(0,0,0,.25);}
     @media(min-width:900px){ .card.half{grid-column: span 6} .card.third{grid-column: span 4} }
+    .card h3{margin-top:0; color:#f3f4f6}
     .muted{color:var(--muted)}
+
+    .rq-grid{display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); margin-top:26px;}
+    .rq-card{background:var(--panel); border:1px solid var(--line); border-radius:18px; padding:26px 22px; text-align:center;
+      box-shadow:0 20px 50px rgba(0,0,0,.35);}
+    .rq-num{font-family:"Playfair Display","Times New Roman",serif; font-size:28px; color:var(--brand); margin-bottom:14px; letter-spacing:1px;}
+    .rq-text{font-size:18px; color:#e5e7eb; margin:0; line-height:1.6;}
+    .rq-card::after{content:""; display:block; margin-top:18px; height:3px; width:48px; background:var(--brand); opacity:.8; margin-left:auto; margin-right:auto;}
 
     .team-grid{display:grid; gap:22px; grid-template-columns: repeat(1, 1fr);}
     @media(min-width:700px){ .team-grid{ grid-template-columns: repeat(2, 1fr);} }
     @media(min-width:1000px){ .team-grid{ grid-template-columns: repeat(3, 1fr);} }
-    .person-card{background:#fff; border:1px solid #e5e7eb; border-radius:16px; padding:20px;
-      box-shadow:0 6px 18px rgba(15,23,42,.06); display:flex; gap:16px; align-items:flex-start;}
-    .avatar{width:84px; height:84px; border-radius:50%; flex:0 0 84px; object-fit:cover; border:2px solid #eef2ff; background:#e5e7eb;}
+    .person-card{background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:20px;
+      box-shadow:0 10px 28px rgba(0,0,0,.24); display:flex; gap:16px; align-items:flex-start;}
+    .avatar{width:84px; height:84px; border-radius:50%; flex:0 0 84px; object-fit:cover; border:2px solid rgba(185,28,28,.3); background:#1f2937;}
     .person-name{margin:0; font-size:18px; font-weight:800}
-    .person-role{margin:2px 0 0; font-weight:700; color:#1d4ed8}
-    .person-bio{margin:.5rem 0 0; color:var(--ink); line-height:1.45}
+    .person-role{margin:2px 0 0; font-weight:700; color:var(--brand)}
+    .person-bio{margin:.5rem 0 0; color:#e5e7eb; line-height:1.5}
 
     .mla {list-style:none; padding-left:0; margin:0;}
     .mla li{margin:0 0 18px 0;}
     .cite{display:block; padding-left:1.8em; text-indent:-1.8em; line-height:1.45;}
     .anno{margin:.35rem 0 0 0; line-height:1.5; color:var(--ink);}
 
-    footer{border-top:1px solid #e5e7eb; background:#fff}
+    footer{border-top:1px solid var(--line); background:var(--panel)}
     .foot{max-width:var(--max); margin:auto; padding:30px 20px; font-size:14px; color:var(--muted)}
   </style>
 </head>
@@ -70,10 +79,11 @@
     <div class="brand">UCLA DH 101 · Deportation</div>
     <div class="links">
       <a href="#home" class="active">Home</a>
-      <a href="#goals">Goals</a>
-      <a href="#about">About Us</a>
-      <a href="#critique">Data Critique</a>
+      <a href="#project">Our Project</a>
+      <a href="#goals">Research</a>
       <a href="#analysis">Analysis</a>
+      <a href="#critique">Data Critique</a>
+      <a href="#about">About Us</a>
       <a href="#sources">Sources</a>
     </div>
   </nav>
@@ -85,90 +95,121 @@
     <h1 class="title">Deportation Data Analysis</h1>
     <p class="subtitle">Diving beyond the numbers</p>
   </div>
-  <a href="#goals" class="chevron"><span>⌄</span></a>
+  <a href="#project" class="chevron"><span>⌄</span></a>
 </header>
+
+<section id="project">
+  <div class="wrap">
+    <p class="section-kicker">Context</p>
+    <h2 class="section-title">Our Project</h2>
+    <div class="card">
+      <p style="margin:0; color:#e5e7eb; line-height:1.7; font-size:17px;">
+        We examine how deportations from 1892–1921 reshaped immigrant life in the United States, tracing policies, enforcement practices, and political pressures that defined who was expelled and why. Our team pairs quantitative patterns with historical context to surface the human impact behind the data.
+      </p>
+    </div>
+  </div>
+</section>
 
 <section id="goals">
   <div class="wrap">
     <p class="section-kicker">Overview</p>
-    <h2 class="section-title">Project Goals</h2>
-    <div class="card" style="min-height:120px;"></div>
+    <h2 class="section-title">Research Questions</h2>
+    <div class="rq-grid">
+      <article class="rq-card">
+        <div class="rq-num">1</div>
+        <p class="rq-text">How did the deportations of 1892–1921 impact immigrant communities in the United States?</p>
+      </article>
+      <article class="rq-card">
+        <div class="rq-num">2</div>
+        <p class="rq-text">How do the laws and regulations of 1892–1912 affect the deportation of immigrants of unique backgrounds?</p>
+      </article>
+      <article class="rq-card">
+        <div class="rq-num">3</div>
+        <p class="rq-text">How do the deportation rates between 1892–1921 reflect the U.S. political beliefs during that time?</p>
+      </article>
+    </div>
   </div>
 </section>
 
 <section id="about">
   <div class="wrap">
     <p class="section-kicker">Team</p>
-    <h2 class="section-title">About Us</h2>
-    
-  <section id="about" aria-labelledby="about-title">
-    <div class="wrap">
-      <p class="section-kicker">Team</p>
-      <h2 id="about-title" class="section-title">About Us</h2>
-      <div class="team-grid" role="list">
+    <h2 id="about-title" class="section-title">About Us</h2>
+    <div class="team-grid" role="list">
 
-        <!-- Dylan -->
-        <article class="person-card" role="listitem">
-          <img class="avatar" src="images/headshot-default.png" alt="Headshot placeholder for Dylan Brunkhardt">
-          <div>
-            <h3 class="person-name">Dylan Brunkhardt</h3>
-            <p class="person-role">Project Manager</p>
-            <p class="person-bio">Hi, I’m Dylan, a third year Pre-Business Economics major looking into minoring in accounting as well. I took on the role of Project Manager and ensured that all project guidelines were met and done efficiently and on time. I led communications and helped delegate tasks throughout the project’s lifecycle.</p>
-          </div>
-        </article>
+      <!-- Dylan -->
+      <article class="person-card" role="listitem">
+        <img class="avatar" src="images/headshot-default.png" alt="Headshot placeholder for Dylan Brunkhardt">
+        <div>
+          <h3 class="person-name">Dylan Brunkhardt</h3>
+          <p class="person-role">Project Manager</p>
+          <p class="person-bio">Hi, I’m Dylan, a third year Pre-Business Economics major looking into minoring in accounting as well. I took on the role of Project Manager and ensured that all project guidelines were met and done efficiently and on time. I led communications and helped delegate tasks throughout the project’s lifecycle.</p>
+        </div>
+      </article>
 
-        <!-- Kenneth -->
-        <article class="person-card" role="listitem">
-          <img class="avatar" src="images/headshot-default.png" alt="Headshot placeholder for Kenneth Tran">
-          <div>
-            <h3 class="person-name">Kenneth Tran</h3>
-            <p class="person-role">Data Specialist</p>
-            <p class="person-bio">Hello! I’m Kenny, a third year Communications major and Entrepreneurship minor from San Diego. I managed the cleaning, standardization, and refining of our data set to ensure smooth and accurate analysis for our final project.</p>
-          </div>
-        </article>
+      <!-- Kenneth -->
+      <article class="person-card" role="listitem">
+        <img class="avatar" src="images/headshot-default.png" alt="Headshot placeholder for Kenneth Tran">
+        <div>
+          <h3 class="person-name">Kenneth Tran</h3>
+          <p class="person-role">Data Specialist</p>
+          <p class="person-bio">Hello! I’m Kenny, a third year Communications major and Entrepreneurship minor from San Diego. I managed the cleaning, standardization, and refining of our data set to ensure smooth and accurate analysis for our final project.</p>
+        </div>
+      </article>
 
-        <!-- Yuexi -->
-        <article class="person-card" role="listitem">
-          <img class="avatar" src="images/headshot-default.png" alt="Headshot placeholder for Yuexi Liao">
-          <div>
-            <h3 class="person-name">Yuexi Liao</h3>
-            <p class="person-role">Editor</p>
-            <p class="person-bio">Hi, my name is Yuexi Liao. I am a third year Pre-Math and Economics major. As an editor, I was in charge of editing all content on the website to ensure the narratives were cohesive and conveyed the correct information.</p>
-          </div>
-        </article>
+      <!-- Yuexi -->
+      <article class="person-card" role="listitem">
+        <img class="avatar" src="images/headshot-default.png" alt="Headshot placeholder for Yuexi Liao">
+        <div>
+          <h3 class="person-name">Yuexi Liao</h3>
+          <p class="person-role">Editor</p>
+          <p class="person-bio">Hi, my name is Yuexi Liao. I am a third year Pre-Math and Economics major. As an editor, I was in charge of editing all content on the website to ensure the narratives were cohesive and conveyed the correct information.</p>
+        </div>
+      </article>
 
-        <!-- Yitian -->
-        <article class="person-card" role="listitem">
-          <img class="avatar" src="images/headshot-default.png" alt="Headshot placeholder for Yitian Hu">
-          <div>
-            <h3 class="person-name">Yitian Hu</h3>
-            <p class="person-role">Data</p>
-            <p class="person-bio">Hi! I’m Yitian, a third-year Economics major with a strong interest in data analysis and visualization。</p>
-          </div>
-        </article>
+      <!-- Yitian -->
+      <article class="person-card" role="listitem">
+        <img class="avatar" src="images/headshot-default.png" alt="Headshot placeholder for Yitian Hu">
+        <div>
+          <h3 class="person-name">Yitian Hu</h3>
+          <p class="person-role">Data</p>
+          <p class="person-bio">Hi! I’m Yitian, a third-year Economics major with a strong interest in data analysis and visualization。</p>
+        </div>
+      </article>
 
-        <!-- Yahir -->
-        <article class="person-card" role="listitem">
-          <img class="avatar" src="images/headshot-default.png" alt="Headshot placeholder for Yahir Perez">
-          <div>
-            <h3 class="person-name">Yahir Perez</h3>
-            <p class="person-role">Content Developer</p>
-            <p class="person-bio">Hey! I’m Yahir, a third year Sociology major looking to go into marketing. As content developer I ensure that our group’s main argument, maps, and data visualizations integrate nicely into our website.</p>
-          </div>
-        </article>
+      <!-- Yahir -->
+      <article class="person-card" role="listitem">
+        <img class="avatar" src="images/headshot-default.png" alt="Headshot placeholder for Yahir Perez">
+        <div>
+          <h3 class="person-name">Yahir Perez</h3>
+          <p class="person-role">Content Developer</p>
+          <p class="person-bio">Hey! I’m Yahir, a third year Sociology major looking to go into marketing. As content developer I ensure that our group’s main argument, maps, and data visualizations integrate nicely into our website.</p>
+        </div>
+      </article>
 
-        <!-- Rohan -->
-        <article class="person-card" role="listitem">
-          <img class="avatar" src="images/headshot-default.png" alt="Headshot placeholder for Rohan Akurathi">
-          <div>
-            <h3 class="person-name">Rohan Akurathi</h3>
-            <p class="person-role">Web Developer</p>
-            <p class="person-bio">Hi, my name is Rohan Akurathi, I am a fourth year Statistics and Data Science student at UCLA. As a web developer I create the website stylistically and fundamentally putting together all our thoughts and ideas.</p>
-          </div>
-        </article>
-      </div>
+      <!-- Rohan -->
+      <article class="person-card" role="listitem">
+        <img class="avatar" src="images/headshot-default.png" alt="Headshot placeholder for Rohan Akurathi">
+        <div>
+          <h3 class="person-name">Rohan Akurathi</h3>
+          <p class="person-role">Web Developer</p>
+          <p class="person-bio">Hi, my name is Rohan Akurathi, I am a fourth year Statistics and Data Science student at UCLA. As a web developer I create the website stylistically and fundamentally putting together all our thoughts and ideas.</p>
+        </div>
+      </article>
     </div>
-  </section>
+  </div>
+</section>
+
+<!-- Analysis & Visuals remain blank cards -->
+<section id="analysis">
+  <div class="wrap">
+    <p class="section-kicker">Our Findings</p>
+    <h2 class="section-title">Analysis & Visuals</h2>
+    <div class="grid">
+      <article class="card" style="min-height:180px;"></article>
+      <article class="card" style="min-height:180px;"></article>
+      <article class="card" style="min-height:180px;"></article>
+    </div>
   </div>
 </section>
 
@@ -211,19 +252,6 @@
         <p>The dataset shows certain ideological effects in how deportation data was recorded and presented. It treats people mainly as numbers and cases instead of individuals with personal stories. This reflects how the U.S. government at that time viewed deportation—as an administrative or legal issue rather than a human one. The way the data is organized also suggests a belief that the process was neutral and objective, but in reality, it was influenced by politics, racism, and economic interests.</p>
         <p>Another ideological effect comes from who created the data. Since it was collected by government officials, it only shows one side—the state’s perspective—and not the voices of the people who were deported. This imbalance shows how data can reflect the power structure of its time. In short, the dataset not only documents deportations but also carries the ideas and values of authority and control that shaped U.S. immigration policy back then.</p>
       </article>
-    </div>
-  </div>
-</section>
-
-<!-- Analysis & Visuals remain blank cards -->
-<section id="analysis">
-  <div class="wrap">
-    <p class="section-kicker">Our Findings</p>
-    <h2 class="section-title">Analysis & Visuals</h2>
-    <div class="grid">
-      <article class="card" style="min-height:180px;"></article>
-      <article class="card" style="min-height:180px;"></article>
-      <article class="card" style="min-height:180px;"></article>
     </div>
   </div>
 </section>
