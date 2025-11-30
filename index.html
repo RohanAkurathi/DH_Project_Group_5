@@ -34,8 +34,11 @@
     .chevron:hover{transform:translateX(-50%) translateY(2px)}
     .chevron span{font-size:22px}
 
-    section{padding:80px 20px; position:relative;}
+    section{padding:80px 20px; position:relative; min-height:100vh;}
     section + section{margin-top:10px;}
+    .page{display:none;}
+    .page.active{display:block;}
+    body.not-home header.hero{display:none;}
     .wrap{max-width:var(--max); margin:auto}
     .section-title{font-size:30px; margin:0 0 10px; font-weight:800; letter-spacing:.4px;}
     .section-kicker{color:var(--brand); font-weight:700; margin-bottom:18px; letter-spacing:1px; text-transform:uppercase}
@@ -99,6 +102,14 @@
     .project-text{margin:0 0 14px 0; color:#e5e7eb; line-height:1.75; font-size:18px;}
     @media(min-width:900px){ .project-layout{flex-direction:row; align-items:flex-start;} }
 
+    .start-grid{display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); margin-top:18px;}
+    .start-card{background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:18px; box-shadow:0 10px 28px rgba(0,0,0,.24);}
+    .start-icon{width:56px; height:56px; border-radius:50%; border:2px solid rgba(185,28,28,.5); display:grid; place-items:center; color:#f8fafc; font-weight:800; margin-bottom:12px; font-size:18px;}
+    .start-title{margin:0 0 8px 0; font-size:18px; font-weight:800;}
+    .start-text{margin:0 0 12px 0; line-height:1.55; color:#e5e7eb;}
+    .start-link{color:#fca5a5; font-weight:700; text-decoration:none;}
+    .start-link:hover{text-decoration:underline;}
+
     footer{border-top:1px solid var(--line); background:var(--panel)}
     .foot{max-width:var(--max); margin:auto; padding:30px 20px; font-size:14px; color:var(--muted)}
   </style>
@@ -109,13 +120,11 @@
   <nav class="nav">
     <div class="brand">UCLA DH 101 · Deportation</div>
     <div class="links">
-      <a href="#home" class="active">Home</a>
-      <a href="#project">Our Project</a>
-      <a href="#goals">Research</a>
-      <a href="#about">About Us</a>
+      <a href="#home-content" class="active">Home</a>
       <a href="#analysis">Analysis</a>
       <a href="#critique">Data Report</a>
       <a href="#sources">Sources</a>
+      <a href="#about">About Us</a>
     </div>
   </nav>
 </div>
@@ -126,13 +135,11 @@
     <h1 class="title">Deportation Data Analysis</h1>
     <p class="subtitle">Diving beyond the numbers</p>
   </div>
-  <a href="#project" class="chevron"><span>⌄</span></a>
+  <a href="#home-content" class="chevron"><span>⌄</span></a>
 </header>
 
-<section id="project">
+<section id="home-content" class="page active">
   <div class="wrap">
-    <p class="section-kicker">Context</p>
-    <h2 class="section-title">Our Project</h2>
     <div class="project-layout">
       <img class="project-image" src="images/news_article.jpg" alt="Historic newspaper clipping on deportation">
       <div class="card project-card">
@@ -146,31 +153,72 @@
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<section id="goals">
-  <div class="wrap">
-    <p class="section-kicker">Overview</p>
-    <h2 class="section-title">Research Questions</h2>
-    <div class="rq-grid">
-      <article class="rq-card">
-        <div class="rq-num">1</div>
-        <p class="rq-text">How did the deportations of 1892–1921 impact immigrant communities in the United States?</p>
-      </article>
-      <article class="rq-card">
-        <div class="rq-num">2</div>
-        <p class="rq-text">How do the laws and regulations of 1892–1912 affect the deportation of immigrants of unique backgrounds?</p>
-      </article>
-      <article class="rq-card">
-        <div class="rq-num">3</div>
-        <p class="rq-text">How do the deportation rates between 1892–1921 reflect the U.S. political beliefs during that time?</p>
-      </article>
+    <div class="subsection" style="margin-top:34px;">
+      <p class="section-kicker">Overview</p>
+      <h2 class="section-title">Research Questions</h2>
+      <div class="rq-grid">
+        <article class="rq-card">
+          <div class="rq-num">1</div>
+          <p class="rq-text">How did the deportations of 1892–1921 impact immigrant communities in the United States?</p>
+        </article>
+        <article class="rq-card">
+          <div class="rq-num">2</div>
+          <p class="rq-text">How do the laws and regulations of 1892–1912 affect the deportation of immigrants of unique backgrounds?</p>
+        </article>
+        <article class="rq-card">
+          <div class="rq-num">3</div>
+          <p class="rq-text">How do the deportation rates between 1892–1921 reflect the U.S. political beliefs during that time?</p>
+        </article>
+      </div>
+    </div>
+
+    <div class="subsection" style="margin-top:34px;">
+      <p class="section-kicker">Navigation</p>
+      <h2 class="section-title">Get Started</h2>
+      <div class="start-grid">
+        <article class="start-card">
+          <div class="start-icon">📜</div>
+          <h3 class="start-title">History & Context</h3>
+          <p class="start-text">See how deportations between 1900–1921 unfolded and how English and Mexican communities were situated.</p>
+          <a class="start-link" href="#home-content" data-target="home-content">Read more »</a>
+        </article>
+        <article class="start-card">
+          <div class="start-icon">❓</div>
+          <h3 class="start-title">Research Questions</h3>
+          <p class="start-text">Explore the guiding questions that drive our analysis of deportations and their impacts.</p>
+          <a class="start-link" href="#home-content" data-target="home-content">Read more »</a>
+        </article>
+        <article class="start-card">
+          <div class="start-icon">🗺️</div>
+          <h3 class="start-title">Analysis & Maps</h3>
+          <p class="start-text">View the Tableau map of English and Mexican communities and our key takeaways.</p>
+          <a class="start-link" href="#analysis" data-target="analysis">Read more »</a>
+        </article>
+        <article class="start-card">
+          <div class="start-icon">📊</div>
+          <h3 class="start-title">Data Report</h3>
+          <p class="start-text">Open the original and cleaned datasets and review our data overview and critique.</p>
+          <a class="start-link" href="#critique" data-target="critique">Read more »</a>
+        </article>
+        <article class="start-card">
+          <div class="start-icon">📚</div>
+          <h3 class="start-title">Sources</h3>
+          <p class="start-text">Browse the annotated bibliography that underpins our historical and analytical work.</p>
+          <a class="start-link" href="#sources" data-target="sources">Read more »</a>
+        </article>
+        <article class="start-card">
+          <div class="start-icon">👥</div>
+          <h3 class="start-title">About Us</h3>
+          <p class="start-text">Meet the team behind the project and the roles we played in the research.</p>
+          <a class="start-link" href="#about" data-target="about">Read more »</a>
+        </article>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="about">
+<section id="about" class="page">
   <div class="wrap">
     <p class="section-kicker">Team</p>
     <h2 id="about-title" class="section-title">About Us</h2>
@@ -239,48 +287,29 @@
   </div>
 </section>
 
-<!-- Analysis & Visuals remain blank cards -->
-<section id="analysis">
+<section id="analysis" class="page">
   <div class="wrap">
     <p class="section-kicker">Our Findings</p>
     <h2 class="section-title">Analysis & Visuals</h2>
     <div class="grid">
       <article class="card" style="min-height:180px; grid-column: span 12;">
         <h3 style="margin-top:0;">Locations of Significant Mexican and English Communities (c. 1920)</h3>
-        <div class='tableauPlaceholder' id='viz1764457327117' style='position: relative'>
-          <noscript><a href='#'><img alt='Locations of Significant Mexican and English Communities in the United States (~1920) ' src='https://public.tableau.com/static/images/7_/7_1MappingAssignment_17644572474000/Sheet1/1_rss.png' style='border: none' /></a></noscript>
-          <object class='tableauViz'  style='display:none;'>
-            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-            <param name='embed_code_version' value='3' />
-            <param name='site_root' value='' />
-            <param name='name' value='7_1MappingAssignment_17644572474000/Sheet1' />
-            <param name='tabs' value='no' />
-            <param name='toolbar' value='yes' />
-            <param name='static_image' value='https://public.tableau.com/static/images/7_/7_1MappingAssignment_17644572474000/Sheet1/1.png' />
-            <param name='animate_transition' value='yes' />
-            <param name='display_static_image' value='yes' />
-            <param name='display_spinner' value='yes' />
-            <param name='display_overlay' value='yes' />
-            <param name='display_count' value='yes' />
-            <param name='language' value='en-US' />
-            <param name='filter' value='publish=yes' />
-          </object>
+        <div style="position:relative; width:100%; padding-top:56.25%; background:#0f172a; border:1px solid var(--line); border-radius:12px; overflow:hidden;">
+          <iframe title="Tableau map" src="https://public.tableau.com/views/7_1MappingAssignment_17644572474000/Sheet1?:showVizHome=no&:embed=yes" style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;" allowfullscreen></iframe>
         </div>
-        <script type='text/javascript'>
-          const divElement=document.getElementById('viz1764457327117');
-          const vizElement=divElement.getElementsByTagName('object')[0];
-          vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';
-          const scriptElement=document.createElement('script');
-          scriptElement.src='https://public.tableau.com/javascripts/api/viz_v1.js';
-          vizElement.parentNode.insertBefore(scriptElement,vizElement);
-        </script>
+      </article>
+      <article class="card" style="grid-column: span 12;">
+        <h3 style="margin-top:0;">Map Interpretation</h3>
+        <p style="margin:0; color:#e5e7eb; line-height:1.7;">
+          One specific point about the geographical data in this map is the specific locations of these communities. There are a large number of English communities in the Northeast because a majority of English immigrants came through Ellis Island, which is in New York City. In addition, there were many industrial centers in this area, which many English communities were connected to. In the Southwest, there are a large number of Mexican communities because they immigrated through the Southern border. There were large agricultural centers in the Southwest as well, which is where a majority of Mexicans worked. A majority of these communities were in these locations due to labor-related reasons. Overall, knowing the location of these communities is important to our project because we can see how these agricultural and industrial communities see how they were impacted by deportations. It helps put it into perspective as well, as we can see that the impact of them was felt widely and not in one single area.
+        </p>
       </article>
     </div>
   </div>
 </section>
 
 <!-- 🧭 DATA REPORT -->
-<section id="critique">
+<section id="critique" class="page">
   <div class="wrap">
     <p class="section-kicker">Method & Ethics</p>
     <h2 class="section-title">Data Report</h2>
@@ -371,7 +400,7 @@
 </section>
 
 <!-- Full Annotated Bibliography (already in previous version) -->
-<section id="sources">
+<section id="sources" class="page">
   <div class="wrap">
     <p class="section-kicker">Citations</p>
     <h2 class="section-title">Sources & Credits</h2>
@@ -564,10 +593,24 @@
 </footer>
 
 <script>
-  const sections=[...document.querySelectorAll("section,header.hero")];
-  const links=[...document.querySelectorAll(".links a")];
-  const spy=()=>{const y=window.scrollY+120;let cur="#home";sections.forEach(s=>{if(y>=s.offsetTop)cur="#"+(s.id||"home")});links.forEach(a=>a.classList.toggle("active",a.getAttribute("href")===cur))};
-  window.addEventListener("scroll",spy);window.addEventListener("load",spy);
+  const sections=[...document.querySelectorAll("section.page")];
+  const links=[...document.querySelectorAll(".links a"), ...document.querySelectorAll("[data-target]")];
+  const showPage=(id)=>{
+    sections.forEach(s=>s.classList.toggle("active",s.id===id));
+    document.body.classList.toggle("not-home", id!=="home-content");
+    document.querySelectorAll(".links a").forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+id));
+    window.scrollTo(0,0);
+  };
+  links.forEach(a=>{
+    a.addEventListener("click",e=>{
+      const target=a.dataset.target || a.getAttribute("href").replace("#","");
+      if(target){
+        e.preventDefault();
+        showPage(target);
+      }
+    });
+  });
+  showPage("home-content");
 
   const bibHeads=[...document.querySelectorAll(".bib-head")];
   const toggleCard=(head)=>{
