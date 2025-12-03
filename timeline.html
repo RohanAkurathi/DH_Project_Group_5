@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline | UCLA DH 101 · Deportation</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #000; color: #eaeaea; line-height: 1.7; }
+        .navbar { background-color: #0d0d0d; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; border-bottom: 2px solid #c00; }
+        .navbar-brand { font-size: 1.5rem; font-weight: bold; color: #ffffff; text-decoration: none; }
+        .navbar-nav { display: flex; gap: 2rem; list-style: none; }
+        .navbar-nav a { color: #eaeaea; text-decoration: none; font-size: 1rem; transition: color 0.3s; }
+        .navbar-nav a:hover, .navbar-nav a.active { color: #cc0000; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem; }
+        .page-header { text-align: center; margin-bottom: 3rem; }
+        .page-header h1 { font-size: 2.8rem; color: #ffffff; margin-bottom: 1rem; }
+        .page-header p { font-size: 1.2rem; color: #808080; max-width: 700px; margin: 0 auto; }
+        .legend { display: flex; justify-content: center; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 3rem; padding: 1.5rem; background: #0d0d0d; border-radius: 10px; }
+        .legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; }
+        .legend-dot { width: 14px; height: 14px; border-radius: 50%; }
+        .legend-dot.law { background: #00cc66; }
+        .legend-dot.english { background: #0066cc; }
+        .legend-dot.mexican { background: #cc6600; }
+        .legend-dot.event { background: #6600cc; }
+        .period-section { margin-bottom: 4rem; }
+        .period-header { background: linear-gradient(135deg, #0d0d0d 0%, #000 100%); border-left: 4px solid #cc0000; padding: 1.5rem 2rem; margin-bottom: 2rem; border-radius: 0 10px 10px 0; }
+        .period-header h2 { color: #ffffff; font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .period-header p { color: #808080; font-size: 1rem; }
+        .timeline { position: relative; padding-left: 30px; }
+        .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 3px; background: linear-gradient(to bottom, #cc0000, #6600cc); border-radius: 3px; }
+        .timeline-item { position: relative; margin-bottom: 2rem; padding-left: 2rem; }
+        .timeline-item::before { content: ''; position: absolute; left: -22px; top: 1.5rem; width: 16px; height: 16px; border-radius: 50%; border: 3px solid #1a1a2e; z-index: 1; }
+        .timeline-item.law::before { background: #00cc66; }
+        .timeline-item.english::before { background: #0066cc; }
+        .timeline-item.mexican::before { background: #cc6600; }
+        .timeline-item.event::before { background: #9b59b6; }
+        .timeline-card { background: #0d0d0d; border-radius: 12px; padding: 1.5rem 2rem; border: 1px solid #1a1a1a; transition: transform 0.3s, box-shadow 0.3s; }
+        .timeline-card:hover { transform: translateX(5px); box-shadow: 0 5px 20px rgba(233, 69, 96, 0.15); }
+        .card-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
+        .category-tag { padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .category-tag.law { background: #00cc66; color: #000000; }
+        .category-tag.english { background: #0066cc; color: #fff; }
+        .category-tag.mexican { background: #cc6600; color: #000000; }
+        .category-tag.event { background: #6600cc; color: #fff; }
+        .date-tag { color: #808080; font-size: 0.85rem; }
+        .timeline-card h3 { color: #eaeaea; font-size: 1.3rem; margin-bottom: 0.8rem; }
+        .timeline-card > p { color: #999999; margin-bottom: 1rem; font-size: 0.95rem; }
+        .timeline-card h4 { color: #cc0000; font-size: 1rem; margin: 1.2rem 0 0.6rem 0; }
+        .timeline-card ul { margin-left: 1.2rem; color: #999999; font-size: 0.9rem; }
+        .timeline-card li { margin-bottom: 0.4rem; }
+        .timeline-card strong { color: #eaeaea; }
+        .highlight-box { background: rgba(204, 0, 0, 0.15); border-left: 3px solid #cc0000; padding: 1rem 1.2rem; margin-top: 1rem; border-radius: 0 8px 8px 0; }
+        .highlight-box p { color: #d0d0d0; font-size: 0.9rem; margin: 0; }
+        .stats-grid { display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; }
+        .stat-box { background: rgba(0, 204, 102, 0.1); border: 1px solid rgba(0, 204, 102, 0.3); padding: 1rem; border-radius: 8px; text-align: center; flex: 1; min-width: 120px; }
+        .stat-number { font-size: 1.5rem; font-weight: bold; color: #00cc66; }
+        .stat-label { font-size: 0.75rem; color: #808080; text-transform: uppercase; margin-top: 0.3rem; }
+        footer { background: #0d0d0d; padding: 2rem; text-align: center; margin-top: 3rem; border-top: 2px solid #cc0000; }
+        footer h3 { color: #cc0000; margin-bottom: 1.5rem; }
+        .sources-list { max-width: 800px; margin: 0 auto; text-align: left; color: #a0a0a0; font-size: 0.85rem; }
+        .sources-list p { margin-bottom: 0.5rem; }
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; gap: 1rem; }
+            .navbar-nav { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+            .page-header h1 { font-size: 2rem; }
+            .container { padding: 2rem 1rem; }
+            .timeline { padding-left: 20px; }
+            .timeline-item { padding-left: 1rem; }
+            .timeline-item::before { left: -16px; width: 12px; height: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="#" class="navbar-brand">UCLA DH 101 · Deportation</a>
+        <ul class="navbar-nav">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Analysis</a></li>
+            <li><a href="#" class="active">Timeline</a></li>
+            <li><a href="#">Data Report</a></li>
+            <li><a href="#">Sources</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <header class="page-header">
+            <h1>U.S. Immigration & Deportation Timeline</h1>
+            <p>1900–1921 · Examining deportation policies affecting English and Mexican immigrants in the United States</p>
+        </header>
+
+        <div class="legend">
+            <div class="legend-item"><div class="legend-dot law"></div><span>Federal Law</span></div>
+            <div class="legend-item"><div class="legend-dot english"></div><span>English Immigrants</span></div>
+            <div class="legend-item"><div class="legend-dot mexican"></div><span>Mexican Immigrants</span></div>
+            <div class="legend-item"><div class="legend-dot event"></div><span>Key Events</span></div>
+        </div>
+
+        <section class="period-section">
+            <div class="period-header">
+                <h2>First Period: 1900–1907</h2>
+                <p>Foundations of Modern Immigration Enforcement</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item english">
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <span class="category-tag english">English Immigration</span>
+                            <span class="date-tag">c. 1880</span>
+                        </div>
+                        <h3>Growing Popularity of Steamships</h3>
+                        <p>The spread of steam-powered ships replaced sail ships, dramatically reducing travel times and costs for English immigrants. This technological advancement substantially reduced the difficulty of transatlantic migration.</p>
+                        <div class="highlight-box">
+                            <p><strong>Impact:</strong> Cheaper and faster ocean crossings opened immigration to working-class English families who previously could not afford the journey.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item law">
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <span class="category-tag law">Federal Law</span>
+                            <span class="date-tag">1882</span>
+                        </div>
+                        <h3>Chinese Exclusion Act</h3>
+                        <p>This landmark legislation reduced immigration and labor supply from China. The resulting labor shortages created a new demand for cheap labor from Mexico to replace Chinese workers.</p>
+                        <h4>Key Effects</h4>
+                        <ul>
+                            <li>Suspended immigration of Chinese laborers for 10 years</li>
+                            <li>Barred Chinese from naturalization</li>
+                            <li>Created labor vacuum in railroad construction and agriculture</li>
+                            <li>Mexican workers increasingly recruited to fill these positions</li>
+                        </ul>
+                        <div class="highlight-box">
+                            <p><strong>Legacy:</strong> This was the first significant law restricting immigration based on nationality, setting a precedent for future exclusionary policies.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item mexican">
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <span class="category-tag mexican">Mexican Immigration</span>
+                            <span class="date-tag">1884</span>
+                        </div>
+                        <h3>Completion of the Mexican Central Railroad</h3>
+                        <p>Connected the U.S. and Mexican rail networks, making cross-border migration significantly easier and cheaper, facilitating sustained flows of Mexican labor northward.</p>
+                        <h4>Impact on Migration</h4>
+                        <ul>
+                            <li>Direct rail connections from central Mexico to U.S. border</li>
+                            <li>Labor recruiters (<em>enganchadores</em>) could travel deep into Mexico's interior</li>
+                            <li>Workers from Guanajuato, Jalisco, Michoacán, and Zacatecas now had access to U.S. jobs</li>
+                            <li>El Paso became a major gateway for Mexican labor migration</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item law">
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <span class="category-tag law">Federal Law</span>
+                            <span class="date-tag">March 3, 1903</span>
+                        </div>
+                        <h3>Anarchist Exclusion Act of 1903</h3>
+                        <p>Expanded U.S. immigration law to exclude certain categories of immigrants based on political beliefs and other characteristics. Passed in response to President McKinley's assassination by an anarchist.</p>
+                        <h4>Excludable Classes Added</h4>
+                        <ul>
+                            <li><strong>Anarchists</strong> — those "opposed to all organized government"</li>
+                            <li>Beggars</li>
+                            <li>Importers of prostitutes</li>
+                            <li>People with epilepsy</li>
+                        </ul>
+                        <h4>Deportation Provisions</h4>
+                        <ul>
+                            <li>Allowed deportation within <strong>two years</strong> for immigrants who entered unlawfully</li>
+                            <li>Deportation for those who became a "public charge"</li>
+                            <li>First federal law authorizing ideological deportation</li>
+                        </ul>
+                        <div class="highlight-box">
+                            <p><strong>Note:</strong> This act was the first to exclude immigrants based on political beliefs, establishing precedent for future ideological deportations during the Red Scare.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="period-section">
+            <div class="period-header">
+                <h2>Second Period: 1907–1915</h2>
+                <p>Restriction, Revolution, and the Roots of Mass Deportation</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item law">
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <span class="category-tag law">Federal Law</span>
+                            <span class="date-tag">February 20, 1907</span>
+                        </div>
+                        <h3>Immigration Act of 1907</h3>
+                        <p>Passed by the 59th Congress and signed by President Theodore Roosevelt, this landmark legislation marked a turning point in American immigration restriction.</p>
+                        <h4>Deportation Provisions</h4>
+                        <ul>
+                            <li><strong>First conduct-based deportation:</strong> The first law authorizing deportation for criminal behavior committed after arrival in the U.S.</li>
+                            <li><strong>Public charge clause:</strong> Aliens who became a "public charge" within three years of entry due to pre-existing conditions could be deported</li>
+                            <li><strong>Prostitution provisions:</strong> Foreign women engaged in prostitution or living in brothels within three years of entry faced deportation</li>
+                            <li><strong>Expanded "immoral purposes":</strong> Banned importing foreign women for "prostitution or any other immoral purpose"</li>
+                        </ul>
+                        <h4>Excludable Classes</h4>
+                        <ul>
+                            <li>Idiots, imbeciles, feeble-minded persons, epileptics, and the insane</li>
+                            <li>Paupers, beggars, and those likely to become public charges</li>
+                            <li>Persons with tuberculosis or contagious diseases</li>
+                            <li>Those convicted of crimes involving moral turpitude</li>
+                            <li>Polygamists and anarchists</li>
+                            <li>Contract laborers</li>
+                        </ul>
+                        <div class="stats-grid">
+                            <div class="stat-box"><div class="stat-number">$4</div><div class="stat-label">Head Tax (doubled)</div></div>
+                            <div class="stat-box"><div class="stat-number">3 Years</div><div class="stat-label">Deportation Window</div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item law">
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <span class="category-tag law">Federal Law</span>
+                            <span class="date-tag">March 2, 1907</span>
+                        </div>
+                        <h3>Expatriation Act of 1907</h3>
+                        <p>A law that tied American women's citizenship to their marital status, with significant implications for deportation.</p>
+                        <h4>Key Provisions</h4>
+                        <ul>
+                            <li>American women who married foreign nationals <strong>automatically lost their U.S. citizenship</strong></li>
+                            <li>Loss of citizenship could lead to <strong>deportation</strong> and <strong>denial of re-entry</strong></li>
+                            <li>During WWI, women married to German men had to register as "enemy aliens"</li>
+                        </ul>
+                        <h4>Notable Women Affected</h4>
+                        <ul>
+                            <li><strong>Harriot Stanton Blatch</strong> — Suffrage movement leader</li>
+                            <li><strong>Inez Milholland</strong> — Attorney and suffragist</li>
+                            <li><strong>Crystal Eastman</strong> — Attorney and feminist</li>
+                        </ul>
+                        <div class="highlight-box">
+                            <p><strong>Repeal:</strong> Partially overturned by the Cable Act of 1922, though women married to "aliens ineligible for citizenship" (i.e., Asian men) remained affected until 1931.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item mexican">
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <span class="category-tag mexican">Mexican Immigration</span>
+                            <span class="date-tag">1907</span>
+                        </div>
+                        <h3>Mexican Economic Crisis & Repatriation</h3>
+                        <p>Mexico suffered a severe economic downturn in 1906, sliding into a full depression by 1907–1909.</p>
+                        <h4>Context</h4>
+                        <ul>
+                            <li>1906: Mexico experienced a sharp economic recession</li>
+                            <li>1907–1909: The depression deepened</li>
+                            <li>Immigration to the U.S. increased as nativist sentiment grew in the Southwest</li>
+                        </ul>
+                        <div class="highlight-box">
+                            <p><strong>1907 Repatriation:</strong> The Mexican government allocated funds to repatriate some Mexican nationals living in the United States during the economic crisis — an early precedent for later mass deportations.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item mexican">
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <span class="category-tag mexican">Mexican Immigration</span>
+                            <span class="date-tag">November 20, 1910</span>
+                        </div>
+                        <h3>The Mexican Revolution Begins</h3>
+                        <p>Francisco I. Madero launched an armed uprising against the dictator Porfirio Díaz.</p>
+                        <h4>Background</h4>
+                        <ul>
+                            <li><strong>Plan of San Luis Potosí:</strong> Madero called for revolution on November 20, 1910</li>
+                            <li>Díaz had ruled for 35 years under an authoritarian regime</li>
+                            <li>Land concentration and stark inequality fueled widespread discontent</li>
+                        </ul>
+                        <h4>Impact on Migration</h4>
+                        <ul>
+                            <li>War refugees began migrating northward in large numbers</li>
+                            <li>Between 1910 and 1920, an estimated <strong>1–1.5 million Mexicans</strong> entered the U.S.</li>
+                            <li>Mexican-origin populations surged in Texas and California</li>
+                        </ul>
+                        <div class="stats-grid">
+                            <div class="stat-box">
+                                <div class="stat-number">1.5M</div>
+                                <div class="stat-label">Migrants (1910-1920)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item event">
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <span class="category-tag event">Government Report</span>
+                            <span class="date-tag">1911</span>
+                        </div>
+                        <h3>The Dillingham Commission Report</h3>
+                        <p>After more than three years and over $1 million in expenses, this massive immigration study was released.</p>
+                        <h4>Commission Composition</h4>
+                        <ul>
+                            <li><strong>Chairman:</strong> Senator William P. Dillingham (R-Vermont)</li>
+                            <li>3 senators, 3 representatives, and 3 presidential appointees as "experts"</li>
+                            <li>Employed over 300 staff members</li>
+                        </ul>
+                        <h4>The Report (41 Volumes)</h4>
+                        <ul>
+                            <li>Statistical analyses of immigrants' occupations, living conditions, education, legislation, and social organizations</li>
+                            <li><strong>Volume 5:</strong> Daniel Folkmar's "Dictionary of Races or Peoples"</li>
+                            <li>Franz Boas's study on physical changes in immigrant children</li>
+                        </ul>
+                        <h4>Key Conclusions & Recommendations</h4>
+                        <ul>
+                            <li>Southern and Eastern European immigrants posed a "serious threat" to American society</li>
+                            <li>Implement literacy tests</li>
+                            <li>Continue Chinese exclusion; restrict Japanese and Korean immigration</li>
+                            <li>Limit unskilled foreign workers</li>
+                            <li><strong>Establish a quota system</strong></li>
+                        </ul>
+                        <div class="highlight-box">
+                            <p><strong>Legacy:</strong> Despite data showing immigrants' overall positive contributions, the Commission's restrictionist recommendations won out—paving the way for the 1917 Literacy Test Act and the 1921 Quota Act.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item event">
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <span class="category-tag event">International Event</span>
+                            <span class="date-tag">August 1914</span>
+                        </div>
+                        <h3>World War I Breaks Out</h3>
+                        <p>War erupted in Europe, with far-reaching consequences for U.S. immigration policy.</p>
+                        <h4>Effects on Immigration</h4>
+                        <ul>
+                            <li>European immigration dropped sharply</li>
+                            <li>Angel Island actually saw an increase in non-Asian immigrants</li>
+                            <li>Set the stage for the Immigration Act of 1917</li>
+                            <li>The Bureau of Investigation began investigating draft evaders and suspected spies</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="period-section">
+            <div class="period-header">
+                <h2>Third Period: 1916–1921</h2>
+                <p>War, Waivers, and the Origins of Mass Deportation</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item law">
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <span class="category-tag law">Federal Law</span>
+                            <span class="date-tag">February 5, 1917</span>
+                        </div>
+                        <h3>Immigration Act of 1917 (Asiatic Barred Zone Act)</h3>
+                        <p>A comprehensive immigration restriction law affecting immigrants from Asia and Pacific regions.</p>
+                        <h4>Key Provisions</h4>
+                        <ul>
+                            <li><strong>Literacy tests</strong> required for those over 16 years old</li>
+                            <li>Created the <strong>"Asiatic Barred Zone"</strong> prohibiting immigration from most of Asia</li>
+                            <li>Increased head taxes on immigrants</li>
+                            <li>Expanded list of excludable classes</li>
+                        </ul>
+                        <div class="highlight-box">
+                            <p><strong>Impact:</strong> This act represented the culmination of decades of restrictionist efforts and the Dillingham Commission's recommendations.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item mexican">
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <span class="category-tag mexican">Mexican Immigration</span>
+                            <span class="date-tag">1917–1918</span>
+                        </div>
+                        <h3>Immigration Act of 1917 Waivers for Mexicans</h3>
+                        <p>Mexicans were given waivers to account for labor shortages during World War I, creating exceptions to the new restrictions.</p>
+                        <h4>Exemptions Granted</h4>
+                        <ul>
+                            <li>Waived the <strong>head tax</strong> for Mexican workers</li>
+                            <li>Exempted from <strong>contract labor provisions</strong></li>
+                            <li>Waived <strong>literacy test requirements</strong></li>
+                        </ul>
+                        <div class="highlight-box">
+                            <p><strong>Significance:</strong> These waivers established a pattern of treating Mexican labor as a flexible workforce — welcomed during shortages, targeted during downturns.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item mexican">
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <span class="category-tag mexican">Mexican Immigration</span>
+                            <span class="date-tag">1920–1921</span>
+                        </div>
+                        <h3>Economic Depression of 1920–1921</h3>
+                        <p>During this economic downturn, Mexican workers were deported in order to provide relief for social welfare agencies.</p>
+                        <h4>Context</h4>
+                        <ul>
+                            <li>Post-WWI recession caused widespread unemployment</li>
+                            <li>Mexican workers scapegoated as economic burden</li>
+                            <li>Deportations used to reduce welfare agency costs</li>
+                            <li>Pattern of economic-driven deportation established</li>
+                        </ul>
+                        <div class="highlight-box">
+                            <p><strong>Foreshadowing:</strong> The majority of these types of deportations would happen later in the 1930s during the Great Depression, when between 500,000 and 2 million Mexicans and Mexican Americans were forcibly removed.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <h3>References & Sources</h3>
+            <div class="sources-list">
+                <p><strong>Primary Legal Sources:</strong></p>
+                <p>• Chinese Exclusion Act of 1882 (22 Stat. 58)</p>
+                <p>• Immigration Act of 1903 / Anarchist Exclusion Act (32 Stat. 1213)</p>
+                <p>• Immigration Act of 1907 (34 Stat. 898)</p>
+                <p>• Expatriation Act of 1907 (34 Stat. 1228)</p>
+                <p>• Immigration Act of 1917 (39 Stat. 874)</p>
+                <br>
+                <p><strong>Key Academic Sources:</strong></p>
+                <p>• Dillingham Commission Reports (1911), 41 volumes</p>
+                <p>• U.S. Department of Homeland Security, Yearbook of Immigration Statistics</p>
+                <p>• National Archives, Records of the Immigration and Naturalization Service (RG 85)</p>
+                <p>• Migration Policy Institute</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

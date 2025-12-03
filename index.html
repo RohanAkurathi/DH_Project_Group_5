@@ -114,6 +114,31 @@
 
     .narrative-card p{text-indent:2em;}
 
+    .timeline-embed{width:100%; border:1px solid var(--line); border-radius:14px; overflow:hidden; box-shadow:0 10px 28px rgba(0,0,0,.3);}
+    .timeline-embed iframe{width:100%; height:900px; border:0; background:#000;}
+
+    .timeline-wrap{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:16px; box-shadow:0 10px 28px rgba(0,0,0,.28);}
+    .timeline-controls{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:12px;}
+    .timeline-controls button{background:rgba(185,28,28,.18); border:1px solid var(--line); color:#fef2f2; border-radius:10px; padding:8px 12px; cursor:pointer; font-weight:700;}
+    .timeline-controls button.active{background:rgba(185,28,28,.35);}
+    .timeline-list{display:flex; flex-direction:column; gap:12px;}
+    .timeline-item-card{background:#0f172a; border:1px solid var(--line); border-radius:12px; padding:12px 14px;}
+    .timeline-head{display:flex; flex-wrap:wrap; align-items:center; gap:10px; cursor:pointer;}
+    .timeline-tag{padding:4px 8px; border-radius:12px; font-size:12px; font-weight:700; color:#000;}
+    .tag-law{background:#00cc66;}
+    .tag-english{background:#0066cc; color:#fff;}
+    .tag-mexican{background:#cc6600;}
+    .tag-event{background:#6600cc; color:#fff;}
+    .timeline-date{color:#9ca3af; font-size:13px;}
+    .timeline-title{color:#fef2f2; font-weight:800; margin:4px 0;}
+    .timeline-body{margin-top:6px; color:#e5e7eb; line-height:1.55; display:none;}
+    .timeline-item-card.open .timeline-body{display:block;}
+    .timeline-body ul{margin:8px 0 0 18px; padding:0;}
+    .timeline-body li{margin-bottom:6px;}
+    .highlight{background:rgba(204,0,0,.15); border-left:3px solid #cc0000; padding:8px 10px; border-radius:0 8px 8px 0; margin-top:8px;}
+    .stats-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:6px;}
+    .stat-chip{background:rgba(0,204,102,.12); border:1px solid rgba(0,204,102,.35); border-radius:8px; padding:6px 10px; color:#22c55e; font-weight:800; font-size:12px;}
+
     footer{border-top:1px solid var(--line); background:var(--panel)}
     .foot{max-width:var(--max); margin:auto; padding:30px 20px; font-size:14px; color:var(--muted)}
   </style>
@@ -127,6 +152,7 @@
       <a href="#home-content" class="active">Home</a>
       <a href="#analysis">Analysis</a>
       <a href="#critique">Data Report</a>
+      <a href="#conclusion">Conclusions</a>
       <a href="#sources">Sources</a>
       <a href="#about">About Us</a>
     </div>
@@ -173,6 +199,24 @@
           <div class="rq-num">3</div>
           <p class="rq-text">How do the deportation rates between 1892–1921 reflect the U.S. political beliefs during that time?</p>
         </article>
+      </div>
+    </div>
+
+    <div class="subsection" style="margin-top:34px;">
+      <p class="section-kicker">Timeline</p>
+      <h2 class="section-title">U.S. Immigration & Deportation (1900–1921)</h2>
+      <div class="timeline-wrap">
+        <div class="timeline-controls">
+          <button class="active" data-filter="all">All</button>
+          <button data-filter="law">Federal Law</button>
+          <button data-filter="english">English</button>
+          <button data-filter="mexican">Mexican</button>
+          <button data-filter="event">Events</button>
+          <button data-filter="p1">1900–1907</button>
+          <button data-filter="p2">1907–1915</button>
+          <button data-filter="p3">1916–1921</button>
+        </div>
+        <div class="timeline-list" id="timeline-list"></div>
       </div>
     </div>
 
@@ -348,6 +392,29 @@
       <article class="card narrative-card" style="grid-column: span 12;">
         <h3 style="margin-top:0;">Project Lens</h3>
         <p>The significance of our project lies in its ability to connect historical deportation patterns to broader questions about how immigration policy shapes the lived experiences of communities. While scholars have written extensively about the political and economic motivations behind deportations, far less attention has been given to how these policies affected people on a human level—particularly their mental health, family stability, and long-term sense of security. I am working on this topic because I want to find out how the rise of deportation enforcement between 1900 and 1921 changed the daily lives of immigrant communities so that I can help others understand the deeper social and emotional impact behind these historical events. Our data visualizations reveal measurable patterns—such as increases in arrest rates and policy shifts toward “quality control”—that can be linked with meaningful human consequences. By examining deportation through both statistical trends and humanistic perspectives, this project encourages readers to think beyond policy numbers and recognize the lasting psychological and social effects these actions left on Mexican, English, and other immigrant groups. Ultimately, the significance of our work is its effort to bridge quantitative historical data with the lived experiences that are often missing from traditional immigration research.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="conclusion" class="page">
+  <div class="wrap">
+    <p class="section-kicker">Synthesis</p>
+    <h2 class="section-title">Conclusions</h2>
+    <div class="grid">
+      <article class="card" style="grid-column: span 12;">
+        <h3 style="margin-top:0;">Impact of Deportations</h3>
+        <p>The deportation records from 1892–1921 indicate how immigration enforcement transformed from a loose administrative tool into a more organized system that reflected the political and social forces of the moment. Patterns in English and Mexican deportations line up closely with important laws, economic developments, and shifting beliefs about national identity. Both Mexican migration and removals increased in the early 1900s due to stronger federal authority, more expansive exclusionary regulations, and infrastructure improvements including increased train access to the United States. Between 1907 and 1915, laws like the Expatriation Act and the Immigration Act of 1907 strengthened the notion that the federal government may deport individuals for a growing range of reasons, including moral and medical ones. Concurrently, the Mexican Revolution and economic downturns drove more migrants north and increased popular fear of immigration. By the late 1910s, wartime nationalism, literacy exams, and shifting labor demands contributed to substantial rises in deportations, especially the 1919 spike in Mexican removals.</p>
+      </article>
+
+      <article class="card" style="grid-column: span 12;">
+        <h3 style="margin-top:0;">Laws Affecting Deportation</h3>
+        <p>Although English immigrants were deported in higher absolute numbers throughout the time, the reasons underlying removals varied across the two groups. English deportations tended to rely on procedural concerns such as failed inspections or contract labor infractions. In contrast, deportations from Mexico tended more strongly to fall into categories related to morals or perceived public dependency. This is indicative of a larger change in American political culture that began to racialize policing and view Mexican immigrants as socially disposable but economically valuable. In many Mexican communities, deportations caused long-lasting fear of government contact and upended familial networks. For English immigrants, deportations were less tied to race but showed that groups that were more prominent in the United States were still at risk.</p>
+      </article>
+
+      <article class="card" style="grid-column: span 12;">
+        <h3 style="margin-top:0;">Deportation as Political Reflection</h3>
+        <p>Overall, the deportation trends between 1892 and 1921 reflect national attitudes about who belonged in the country and who didn't. Economic instability, war, and restrictive laws all added to heightened enforcement of deportation. The result was a system that used immigration law more and more as a way to manage social tension and project political values, unfortunately at the expense of immigrant communities who were already underrepresented.</p>
       </article>
     </div>
   </div>
@@ -649,7 +716,65 @@
       }
     });
   });
-  showPage("home-content");
+showPage("home-content");
+
+  // Timeline data
+  const tlData=[
+    {type:"english", period:"p1", date:"c. 1880", title:"Steamship Migration", summary:"Steam-powered ships cut travel times and costs, opening transatlantic migration to working-class English families.", highlight:"Impact: Faster, cheaper crossings broadened access to migration."},
+    {type:"law", period:"p1", date:"1882", title:"Chinese Exclusion Act", summary:"Reduced immigration from China, creating labor shortages that drove recruitment of Mexican workers.", bullets:["Suspended immigration of Chinese laborers","Barred Chinese from naturalization","Created labor vacuum in railroads and agriculture","Mexican workers recruited to fill positions"], highlight:"Legacy: First major nationality-based restriction; set precedent for later exclusions."},
+    {type:"mexican", period:"p1", date:"1884", title:"Mexican Central Railroad", summary:"Connected U.S. and Mexican rail networks, lowering cost and friction of cross-border labor migration.", bullets:["Direct rail links to the U.S. border","Recruiters reached interior states","El Paso became a major gateway"]},
+    {type:"law", period:"p1", date:"1903", title:"Anarchist Exclusion Act", summary:"Excluded people based on political beliefs and other categories; first ideological deportation law.", bullets:["Added anarchists, beggars, importers of prostitutes, people with epilepsy","Deport within two years for unlawful entry or becoming a public charge"]},
+
+    {type:"law", period:"p2", date:"Feb 20, 1907", title:"Immigration Act of 1907", summary:"Major restriction law introducing conduct-based deportation and expanding excludable classes.", bullets:["First conduct-based deportation","Public charge within three years","Prostitution provisions and expanded “immoral purposes” clauses","Excludable classes: public charges, contract laborers, polygamists, anarchists, contagious diseases"], stats:["$4 Head Tax","3-Year Deport Window"]},
+    {type:"law", period:"p2", date:"Mar 2, 1907", title:"Expatriation Act", summary:"American women marrying foreign nationals lost citizenship, risking deportation and denial of re-entry; WWI-era women married to Germans registered as “enemy aliens.”"},
+    {type:"mexican", period:"p2", date:"1907", title:"Mexican Economic Crisis & Repatriation", summary:"Recession and depression (1906–1909) increased northward migration amid rising nativism in the Southwest.", highlight:"1907 Repatriation: Mexico funded returns of some nationals—an early precedent for mass deportations."},
+    {type:"mexican", period:"p2", date:"Nov 20, 1910", title:"Mexican Revolution Begins", summary:"Revolution spurred an estimated 1–1.5 million migrants to the U.S. between 1910 and 1920; populations surged in Texas and California.", stats:["1–1.5M Migrants"]},
+    {type:"event", period:"p2", date:"1911", title:"Dillingham Commission", summary:"41-volume report recommending literacy tests, quotas, and continued exclusions, paving the way for the 1917 and 1921 acts."},
+    {type:"event", period:"p2", date:"Aug 1914", title:"World War I", summary:"European immigration dropped; set stage for the 1917 act and heightened surveillance of suspected draft evaders and spies."},
+
+    {type:"law", period:"p3", date:"Feb 5, 1917", title:"Immigration Act of 1917", summary:"Introduced literacy tests, Asiatic Barred Zone, higher head taxes, and expanded exclusions."},
+    {type:"mexican", period:"p3", date:"1917–1918", title:"Waivers for Mexican Labor", summary:"Head taxes, contract labor rules, and literacy tests waived during WWI labor shortages."},
+    {type:"mexican", period:"p3", date:"1920–1921", title:"Economic Depression", summary:"Recession led to deportations of Mexican workers framed as relief for welfare agencies—foreshadowing 1930s mass removals."}
+  ];
+
+  const tlList=document.getElementById("timeline-list");
+  const tlButtons=[...document.querySelectorAll(".timeline-controls button")];
+
+  const renderTimeline=(filter="all")=>{
+    tlList.innerHTML="";
+    tlData.forEach((item,idx)=>{
+      const match=filter==="all" || item.type===filter || item.period===filter;
+      if(!match) return;
+      const card=document.createElement("article");
+      card.className=`timeline-item-card ${item.type} ${item.period}`+(idx===0?" open":"");
+      card.innerHTML=`
+        <div class="timeline-head">
+          <span class="timeline-tag tag-${item.type}">${item.type.charAt(0).toUpperCase()+item.type.slice(1)}</span>
+          <span class="timeline-date">${item.date}</span>
+          <div class="timeline-title">${item.title}</div>
+        </div>
+        <div class="timeline-body">
+          <p>${item.summary}</p>
+          ${item.bullets ? `<ul>${item.bullets.map(b=>`<li>${b}</li>`).join("")}</ul>` : ""}
+          ${item.highlight ? `<div class="highlight"><p><strong>${item.highlight}</strong></p></div>` : ""}
+          ${item.stats ? `<div class="stats-row">${item.stats.map(s=>`<span class="stat-chip">${s}</span>`).join("")}</div>` : ""}
+        </div>
+      `;
+      tlList.appendChild(card);
+    });
+    tlList.querySelectorAll(".timeline-head").forEach(head=>{
+      head.addEventListener("click",()=>head.parentElement.classList.toggle("open"));
+    });
+  };
+
+  tlButtons.forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      tlButtons.forEach(b=>b.classList.remove("active"));
+      btn.classList.add("active");
+      renderTimeline(btn.dataset.filter);
+    });
+  });
+  renderTimeline("all");
 
   const bibHeads=[...document.querySelectorAll(".bib-head")];
   const toggleCard=(head)=>{
